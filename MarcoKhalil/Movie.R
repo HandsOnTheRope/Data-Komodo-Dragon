@@ -76,15 +76,9 @@ completeData = merge(dataAndUserAndItem,zips,by="Zip Code",all.x=TRUE)
 
 
 
-
-
 ###############################################################################
 ###############################SUMMARY TABLE###################################
 ###############################################################################
-
-##############################################################################
-# lapply - list of inputs, function <-------------- try this out, from Callie#
-##############################################################################
 
 #Make everything numeric
 ratingsData$Gender <- as.factor(as.character(ratingsData$Gender))
@@ -197,8 +191,13 @@ library(reshape2)
 meltedRatings <- melt(ratingsData, id="Gender")
 meltedRatingsHeadings <- c('Gender','Genre','Rating')
 names(meltedRatings) <- meltedRatingsHeadings
+# bar graph with genre on x-axis
 ggplot(meltedRatings, aes(x=Genre, y=Rating, fill=Gender)) + geom_bar(stat="identity", position = "dodge") +
   ggtitle("Movie Rating by Genre") + ylab("Rating") + theme(plot.title = element_text(hjust = .5))
+# bar graph with gender on x-axis
+ggplot(meltedRatings, aes(x=Gender, y=Rating, fill=Genre)) + geom_bar(stat="identity", position = "dodge") +
+  ggtitle("Movie Rating by Gender") + ylab("Rating") + theme(plot.title = element_text(hjust = .5))
+
 
 ###########################################################################################
 ############################################HEAT MAP#######################################
