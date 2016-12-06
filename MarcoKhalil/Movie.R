@@ -14,7 +14,6 @@ library(ggplot2)
 library(readr)
 
 
-
 ##################################################################################
 ###################################CLEAN / COMPILE DATA###########################
 ##################################################################################
@@ -72,34 +71,9 @@ dataAndUserAndItem = merge(dataAndUser,uitem,by="Movie ID")
 completeData = merge(dataAndUserAndItem,zips,by="Zip Code",all.x=TRUE)
 
 
-# write.csv(completeData, file = "C:/Users/makhalil/Documents/R/Movie Lens.csv"
-
-
-
 ###############################################################################
 ###############################SUMMARY TABLE###################################
 ###############################################################################
-
-#Make everything numeric
-ratingsData$Gender <- as.factor(as.character(ratingsData$Gender))
-ratingsData$Action <- as.numeric(as.character(ratingsData$Action))
-ratingsData$Adventure <- as.numeric(as.character(ratingsData$Adventure))
-ratingsData$Animation <- as.numeric(as.character(ratingsData$Animation))
-ratingsData$`Children's`<- as.numeric(as.character(ratingsData$`Children's`))
-ratingsData$Comedy <- as.numeric(as.character(ratingsData$Comedy))
-ratingsData$Crime <- as.numeric(as.character(ratingsData$Crime))
-ratingsData$Documentary <- as.numeric(as.character(ratingsData$Documentary))
-ratingsData$Drama <- as.numeric(as.character(ratingsData$Drama))
-ratingsData$Fantasy <- as.numeric(as.character(ratingsData$Fantasy))
-ratingsData$`Film-Noir` <- as.numeric(as.character(ratingsData$`Film-Noir`))
-ratingsData$Horror <- as.numeric(as.character(ratingsData$Horror))
-ratingsData$Musical <- as.numeric(as.character(ratingsData$Musical))
-ratingsData$Mystery <- as.numeric(as.character(ratingsData$Mystery))
-ratingsData$Romance <- as.numeric(as.character(ratingsData$Romance))
-ratingsData$`Sci-Fi` <- as.numeric(as.character(ratingsData$`Sci-Fi`))
-ratingsData$Thriller <- as.numeric(as.character(ratingsData$Thriller))
-ratingsData$War <- as.numeric(as.character(ratingsData$War))
-ratingsData$Western <- as.numeric(as.character(ratingsData$Western))
 
 # Complete Data for Action Genre
 actionData <- subset(completeData, completeData$Action == 1)
@@ -181,6 +155,30 @@ ratingsDataHeadings <- c('Gender','Action','Adventure','Animation',"Children's",
                          'Fantasy','Film-Noir','Horror','Musical','Mystery','Romance','Sci-Fi','Thriller','War','Western')
 names(ratingsData) <- ratingsDataHeadings
 
+#Make everything numeric (except for Gender)
+ratingsData$Gender <- as.factor(as.character(ratingsData$Gender))
+ratingsData$Action <- as.numeric(as.character(ratingsData$Action))
+ratingsData$Adventure <- as.numeric(as.character(ratingsData$Adventure))
+ratingsData$Animation <- as.numeric(as.character(ratingsData$Animation))
+ratingsData$`Children's`<- as.numeric(as.character(ratingsData$`Children's`))
+ratingsData$Comedy <- as.numeric(as.character(ratingsData$Comedy))
+ratingsData$Crime <- as.numeric(as.character(ratingsData$Crime))
+ratingsData$Documentary <- as.numeric(as.character(ratingsData$Documentary))
+ratingsData$Drama <- as.numeric(as.character(ratingsData$Drama))
+ratingsData$Fantasy <- as.numeric(as.character(ratingsData$Fantasy))
+ratingsData$`Film-Noir` <- as.numeric(as.character(ratingsData$`Film-Noir`))
+ratingsData$Horror <- as.numeric(as.character(ratingsData$Horror))
+ratingsData$Musical <- as.numeric(as.character(ratingsData$Musical))
+ratingsData$Mystery <- as.numeric(as.character(ratingsData$Mystery))
+ratingsData$Romance <- as.numeric(as.character(ratingsData$Romance))
+ratingsData$`Sci-Fi` <- as.numeric(as.character(ratingsData$`Sci-Fi`))
+ratingsData$Thriller <- as.numeric(as.character(ratingsData$Thriller))
+ratingsData$War <- as.numeric(as.character(ratingsData$War))
+ratingsData$Western <- as.numeric(as.character(ratingsData$Western))
+
+# Round ratingsData to 2 decimal places
+# ratingsData[,-1] <- round(ratingsData[,-1],4) #the "-1" excludes column 1
+# write.csv(ratingsData, file = "ratingsData.csv")
 
 ###########################################################################################
 ###################################RATINGS DATA BAR GRAPH##################################
